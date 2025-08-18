@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title id="title">qrcode.tokyo finder</title>
+  <!-- Single large finder pattern. Color adapts: black (light), white (dark). Transparent background. -->
+  <style>
+    :root { --finder: #000; }
+    @media (prefers-color-scheme: dark) { :root { --finder: #fff; } }
+  </style>
+  <!-- Outer ring (stroke creates hollow center) -->
+  <rect x="8" y="8" width="48" height="48" rx="6" fill="none" stroke="var(--finder)" stroke-width="10" />
+  <!-- Core square -->
+  <rect x="28" y="28" width="8" height="8" rx="2" fill="var(--finder)" />
+</svg>

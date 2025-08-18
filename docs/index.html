@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>qrcode.tokyo</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="01100101011!" />
+    <meta name="theme-color" content="#0d0d0e" />
+    <meta property="og:title" content="qrcode.tokyo" />
+    <meta property="og:description" content="01100101011!" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://qrcode.tokyo" />
+    <meta property="og:image" content="/social.png" />
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #111418;
+            --muted: #5a6069;
+            --accent: #2563eb;
+            --radius: 14px;
+            --font-stack: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+                Cantarell, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg: #0d0f11;
+                --text: #f5f7fa;
+                --muted: #88919c;
+                --accent: #3b82f6;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            font-family: var(--font-stack);
+            -webkit-font-smoothing: antialiased;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            text-rendering: optimizeLegibility;
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .random-splash {
+            width: 100%;
+            height: 100%;
+            background-color: none;
+            background-image: none;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="random-splash"></div>
+    <script>
+        const splash = document.querySelector(".random-splash");
+        const variants = [
+            { url: "img/splash/splash01.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash02.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash03.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash04.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash05.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash06.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash07.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash08.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash09.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash10.jpg", backgroundColor: "white" },
+            { url: "img/splash/splash11.jpg", backgroundColor: "black" },
+            { url: "img/splash/splash12.jpg", backgroundColor: "black" },
+            { url: "img/splash/splash13.jpg", backgroundColor: "black" },
+            { url: "img/splash/splash14.jpg", backgroundColor: "#eddfd4" },
+        ];
+        const randomVariant =
+            variants[Math.floor(Math.random() * variants.length)];
+        splash.style.backgroundImage = `url(${randomVariant.url})`;
+        splash.style.backgroundColor = randomVariant.backgroundColor;
+    </script>
+</body>
+
+</html>
