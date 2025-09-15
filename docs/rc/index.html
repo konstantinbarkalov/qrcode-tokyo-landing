@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Gallery Prototype</title>
+    <link rel="stylesheet" href="./styles.css" />
+</head>
+
+<body>
+    <div class="app" id="app-root">
+        <header class="app-header" role="banner" data-parallax-factor="0.25">
+            <nav class="ui-bar ui-bar--header app-header__inner" role="group" aria-label="Header">
+                <div class="ui-bar__icon" aria-label="Home">
+                    <img src="./icons/home.svg" class="ui-icon" alt="Home" />
+                </div>
+                <div class="ui-bar__main">
+                    <h3 class="ui-bar__title"><span class="arrow">🢒</span><a href="#">Gallery</a><span class="arrow">🢒</span><span>Pick one</span></h3>
+                </div>
+                <div class="ui-bar__side">
+                    <span class="ink" aria-label="Ink balance">12<span class="ink__emoji"
+                            aria-hidden="true">🌢</span></span>
+                    <button class="icon-button menu-button" aria-label="Open menu" title="Menu" type="button">
+                        <span aria-hidden="true">☰</span>
+                    </button>
+                    <button class="button sign-in" type="button" hidden>Sign in</button>
+                </div>
+            </nav>
+        </header>
+
+        <main id="content" class="app-main" role="main">
+            <div class="relaxed-content">
+                <ul class="card-list" aria-label="Gallery items">
+                    <li class="card">
+                        <a href="#" class="card__link" aria-label="Open item: Sunset Hills">
+                            <figure class="card__figure">
+                                <img class="card__image" alt="Sunset over rolling hills"
+                                    src="./img/2-3/4rc/01.png" />
+                                <figcaption class="card__caption">
+                                    <h2 class="card__title">Sunset Hills</h2>
+                                    <ul class="tag-list" aria-label="Tags">
+                                        <li class="tag">scenic</li>
+                                        <li class="tag">sunset</li>
+                                        <li class="tag">hills</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__link" aria-label="Open item: City Lights">
+                            <figure class="card__figure">
+                                <img class="card__image" alt="Night city skyline"
+                                    src="./img/2-3/4rc/02.png" />
+                                <figcaption class="card__caption">
+                                    <h2 class="card__title">City Lights</h2>
+                                    <ul class="tag-list" aria-label="Tags">
+                                        <li class="tag">urban</li>
+                                        <li class="tag">night</li>
+                                        <li class="tag">skyline</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__link" aria-label="Open item: Forest Trail">
+                            <figure class="card__figure">
+                                <img class="card__image" alt="Forest trail"
+                                    src="./img/2-3/4rc/03.png" />
+                                <figcaption class="card__caption">
+                                    <h2 class="card__title">Forest Trail</h2>
+                                    <ul class="tag-list" aria-label="Tags">
+                                        <li class="tag">nature</li>
+                                        <li class="tag">trail</li>
+                                        <li class="tag">forest</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__link" aria-label="Open item: Ocean Breeze">
+                            <figure class="card__figure">
+                                <img class="card__image" alt="Ocean waves"
+                                    src="./img/2-3/4rc/04.png" />
+                                <figcaption class="card__caption">
+                                    <h2 class="card__title">Ocean Breeze</h2>
+                                    <ul class="tag-list" aria-label="Tags">
+                                        <li class="tag">coast</li>
+                                        <li class="tag">ocean</li>
+                                        <li class="tag">waves</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__link" aria-label="Open item: Mountain Dawn">
+                            <figure class="card__figure">
+                                <img class="card__image" alt="Mountain at dawn" src="./img/2-3/4rc/05.png" />
+                                <figcaption class="card__caption">
+                                    <h2 class="card__title">Mountain Dawn</h2>
+                                    <ul class="tag-list" aria-label="Tags">
+                                        <li class="tag">mountain</li>
+                                        <li class="tag">dawn</li>
+                                        <li class="tag">scenic</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__link" aria-label="Open item: Desert Path">
+                            <figure class="card__figure">
+                                <img class="card__image" alt="Desert path" src="./img/2-3/4rc/06.png" />
+                                <figcaption class="card__caption">
+                                    <h2 class="card__title">Desert Path</h2>
+                                    <ul class="tag-list" aria-label="Tags">
+                                        <li class="tag">desert</li>
+                                        <li class="tag">trail</li>
+                                        <li class="tag">sunny</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__link" aria-label="Open item: Winter Lake">
+                            <figure class="card__figure">
+                                <img class="card__image" alt="Frozen winter lake" src="./img/2-3/4rc/07.png" />
+                                <figcaption class="card__caption">
+                                    <h2 class="card__title">Winter Lake</h2>
+                                    <ul class="tag-list" aria-label="Tags">
+                                        <li class="tag">winter</li>
+                                        <li class="tag">lake</li>
+                                        <li class="tag">snow</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                    <li class="card">
+                        <a href="#" class="card__link" aria-label="Open item: Aurora Night">
+                            <figure class="card__figure">
+                                <img class="card__image" alt="Aurora night sky" src="./img/2-3/4rc/08.png" />
+                                <figcaption class="card__caption">
+                                    <h2 class="card__title">Aurora Night</h2>
+                                    <ul class="tag-list" aria-label="Tags">
+                                        <li class="tag">aurora</li>
+                                        <li class="tag">night</li>
+                                        <li class="tag">sky</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="tight-content">
+                <div class="sheet-scene-mockup"></div>
+                <section class="gen-form-section" aria-labelledby="gen-form-title">
+                    <h2 id="gen-form-title" class="visually-hidden">Generate New Item</h2>
+                    <form class="gen-form" aria-label="New generation inputs" novalidate>
+                        <div class="form-cluster">
+                            <div class="field">
+                                <label for="f-qr-content">QR Content</label>
+                                <input id="f-qr-content" name="qrContent" type="text" placeholder="https://qrcode.tokyo"
+                                    autocomplete="off" value="https://app.qrcode.tokyo/gallery/some-unique-key-width-a-few-words" />
+                            </div>
+                            <div class="field">
+                                <label for="f-aspect">Aspect</label>
+                                <select id="f-aspect" name="aspect">
+                                    <option value="aspect-1-1">1:1</option>
+                                    <option value="aspect-4-5">4:5</option>
+                                    <option value="aspect-2-3" selected>2:3</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="f-top-heading">Top heading</label>
+                                <input id="f-top-heading" name="topHeading" type="text" placeholder="Summer Sale" value="Summer Sale"/>
+                            </div>
+                            <div class="field">
+                                <label for="f-top-subtitle">Top subtitle</label>
+                                <input id="f-top-subtitle" name="topSubtitle" type="text" placeholder="Limited time" value="Limited time"/>
+                            </div>
+                            <div class="field">
+                                <label for="f-bottom-heading">Bottom heading</label>
+                                <input id="f-bottom-heading" name="bottomHeading" type="text"
+                                    placeholder="Scan & Save" value="Scan & Save"/>
+                            </div>
+                            <div class="field">
+                                <label for="f-bottom-subtitle">Bottom subtitle</label>
+                                <input id="f-bottom-subtitle" name="bottomSubtitle" type="text"
+                                    placeholder="Offer inside" value="Offer inside"/>
+                            </div>
+                        </div>
+                        <div class="form-actions" role="group" aria-label="Actions">
+                            <button type="button" class="btn btn--utility">Preview</button>
+                            <button type="submit" class="btn btn--ultra">Generate</button>
+                            <div class="btn-split" role="group" aria-label="Download image">
+                                <button type="button" class="btn btn--split-left" data-download="jpg" aria-label="Download JPG">⤹ JPG</button>
+                                <button type="button" class="btn btn--split-right" data-download="png" aria-label="Download PNG">PNG ⤸</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </main>
+
+        <footer class="filter-bar" role="contentinfo" aria-label="Filters">
+            <nav class="ui-bar ui-bar--filter filter-bar__inner" role="group" aria-label="Filter controls">
+                <div class="ui-bar__icon" aria-label="Filter options">
+                    <img src="./icons/filter.svg" class="ui-icon" alt="Filters" />
+                </div>
+                <div class="ui-bar__main">
+                    <div class="filter-bar__chips" role="group" aria-label="Tags">
+                        <button type="button" class="chip is-active" aria-pressed="true">All</button>
+                        <button type="button" class="chip" aria-pressed="false">scenic</button>
+                        <button type="button" class="chip" aria-pressed="false">urban</button>
+                        <button type="button" class="chip" aria-pressed="false">nature</button>
+                        <button type="button" class="chip" aria-pressed="false">coast</button>
+                    </div>
+                </div>
+                <div class="ui-bar__side">
+                    <label for="aspect-select" class="visually-hidden">Aspect ratio</label>
+                    <select id="aspect-select" class="aspect-select" aria-label="Aspect ratio">
+                        <option value="any">Any</option>
+                        <option value="1:1">1:1</option>
+                        <option value="4:5">4:5</option>
+                        <option value="2:3" selected>2:3</option>
+                    </select>
+                </div>
+            </nav>
+        </footer>
+    </div>
+    <script defer src="./app.js"></script>
+</body>
+
+</html>
