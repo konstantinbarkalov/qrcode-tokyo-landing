@@ -157,7 +157,10 @@
         --font-body-sm: 13px;
         --font-body: 14px;
         --font-title-sm: 15px;
-        --font-title: 18px;
+    --font-title: 18px;
+
+    /* Symbol/emoji font stack to cover SMP arrows and UI glyphs on mobile */
+    --font-symbols: "Noto Sans Symbols 2", "Segoe UI Symbol", "Noto Color Emoji", "Segoe UI Emoji", "Apple Color Emoji";
 
         /* Glassmorphism */
         --glass--blur: 16px;
@@ -207,8 +210,8 @@ body {
     background-color: var(--color-bg-alt);
     background-image: radial-gradient(circle at 0 0, var(--color-translucent-surface-boring), var(--color-bg-alt));
     color: var(--color-text);
-    /* Use hosted Roboto with resilient system fallbacks */
-    font-family: "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Sans", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    /* Use hosted Roboto with resilient system + symbol fallbacks */
+    font-family: "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Sans", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Sans Symbols 2", "Noto Color Emoji";
     position: relative;
 }
 
@@ -666,6 +669,8 @@ html.is-scroll-locked .fly {
     padding: 0 8px 0 10px;
     font-size: 17px;
     vertical-align: -0.5px;
+    /* Force a symbol-capable fallback for special arrows */
+    font-family: var(--font-symbols), inherit;
 }
 
 .ui-bar__title span.arrow:first-child {
@@ -793,6 +798,8 @@ html.is-scroll-locked .fly {
     line-height: 0;
     border-radius: var(--radius-pill);
     background: var(--color-opaque-surface-spot);
+    /* Ensure hamburger glyph uses a symbol font when needed */
+    font-family: var(--font-symbols), inherit;
 }
 
 .menu-button:hover {
