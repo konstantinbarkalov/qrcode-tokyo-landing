@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <title>Gallery Prototype (Refactored Modern Standard)</title>
+    <!-- Web fonts: simple, modern include -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Roboto+Serif:ital,wght@0,400;0,500;0,600;1,500&display=swap"
+        rel="stylesheet">
+    <!-- Symbols coverage (e.g., U+1F8xx arrows) -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Symbols+2&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <style>
+        :root {
+            --scrollbar-comp: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app" id="app-root">
+
+        <!-- Navigation Dialog  -->
+        <dialog id="nav-dialog" class="overfly overfly--nav" aria-labelledby="main-nav-title" aria-modal="true">
+            <aside class="overfly__panel" data-panel-root>
+                <header class="main-nav__header">
+                    <h2 id="main-nav-title" class="main-nav__title">Menu</h2>
+                    <button type="button" class="main-nav__close" aria-label="Close menu"
+                        data-dialog-close>&times;</button>
+                </header>
+                <nav class="main-nav" aria-label="Primary">
+                    <ul class="main-nav__list list-plain">
+                        <li class="main-nav__item"><a href="#" class="main-nav__entry is-current" data-nav-item><span
+                                    class="main-nav__icon"><img src="./img/icons/gallery.svg" alt=""
+                                        aria-hidden="true"></span><span class="main-nav__label">Gallery</span></a>
+                        </li>
+                        <li class="main-nav__item"><a href="#" class="main-nav__entry" data-nav-item><span
+                                    class="main-nav__icon"><img src="./img/icons/generations.svg" alt=""
+                                        aria-hidden="true"></span><span class="main-nav__label">My
+                                    Generations</span></a></li>
+                        <li class="main-nav__item"><a href="#" class="main-nav__entry" data-nav-item><span
+                                    class="main-nav__icon"><img src="./img/icons/profile.svg" alt=""
+                                        aria-hidden="true"></span><span class="main-nav__label">Profile</span></a>
+                        </li>
+                        <li class="main-nav__item"><a href="#" class="main-nav__entry" data-nav-item><span
+                                    class="main-nav__icon"><img src="./img/icons/wallet.svg" alt=""
+                                        aria-hidden="true"></span><span class="main-nav__label">Wallet</span></a></li>
+                        <li class="main-nav__item"><a href="#" class="main-nav__entry" data-nav-item><span
+                                    class="main-nav__icon"><img src="./img/icons/help.svg" alt=""
+                                        aria-hidden="true"></span><span class="main-nav__label">Help</span></a></li>
+                        <li class="main-nav__item"><button type="button" class="main-nav__entry"
+                                data-nav-intent="signout" data-dialog-close><span class="main-nav__icon"><img
+                                        src="./img/icons/signout.svg" alt="" aria-hidden="true"></span><span
+                                    class="main-nav__label">Sign Out</span></button></li>
+                    </ul>
+                </nav>
+                <footer class="main-nav__footer" aria-label="Meta">
+                    <div class="main-nav__meta">v0.1 prototype</div>
+                </footer>
+            </aside>
+        </dialog>
+
+        <!-- Info Modal Dialog -->
+        <dialog id="info-dialog" class="overfly overfly--dialog" aria-labelledby="info-modal-title" aria-modal="true">
+            <div class="overfly__panel dialog" data-panel-root>
+                <header class="dialog__header">
+                    <h2 id="info-modal-title" class="dialog__title">Demo Modal</h2>
+                    <button type="button" class="dialog-close" aria-label="Close dialog" data-dialog-close>✕</button>
+                </header>
+                <div class="dialog__body">
+                    <p>This is a unified dialog example (native &lt;dialog&gt;). Replace with real content later.</p>
+                    <div class="dialog__actions">
+                        <button type="button" class="btn btn-secondary" data-dialog-close>Close</button>
+                        <button type="button" class="btn btn--utility" data-random-toast>Action</button>
+                    </div>
+                </div>
+            </div>
+        </dialog>
+
+
+        <!-- Flying Header -->
+        <div class="fly fly--top" data-parallax-factor="0.25" data-parallax-gamma="2"
+            data-parallax-identity-distance="50">
+            <div class="fly__measured">
+                <header class="app-header">
+                    <nav class="ui-bar ui-bar--header app-header__inner" aria-label="Header">
+                        <div class="ui-bar__icon">
+                            <img src="./img/icons/home.svg" class="ui-icon" alt="Home">
+                        </div>
+                        <div class="ui-bar__main">
+                            <h3 class="ui-bar__title"><span class="arrow">🢒</span><a href="#">Gallery</a><span
+                                    class="arrow">🢒</span><span>Pick one</span></h3>
+                        </div>
+                        <div class="ui-bar__side">
+                            <span class="ink">12<span class="ink__emoji" aria-hidden="true">🌢</span></span>
+                            <button class="icon-button menu-button" aria-label="Open menu" title="Menu" type="button"
+                                data-dialog-open="nav-dialog"><span aria-hidden="true">☰</span></button>
+                            <button class="button sign-in" type="button" hidden>Sign in</button>
+                        </div>
+                    </nav>
+                </header>
+            </div>
+            <div class="fly__extra" aria-hidden="true"></div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <div class="content-column content-column--relaxed">
+                <ul class="sheet-list list-plain" aria-label="Gallery items">
+                    <!-- Sheets copied from original -->
+                    <li class="sheet"><a href="#" class="sheet__link" aria-label="Open item: Sunflower Cloud on Beach">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Sunflower Cloud on Beach" src="./img/01.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Sunflower Cloud on Beach</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">nature</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">surreal</li>
+                                        <li class="tag">beach</li>
+                                        <li class="tag">summer</li>
+                                        <li class="tag">floral</li>
+                                        <li class="tag">whimsical</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link" aria-label="Open item: A Delicious Pizza Mosaic">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="A Delicious Pizza Mosaic" src="./img/02.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">A Delicious Pizza Mosaic</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">food</li>
+                                        <li class="tag">pizza</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">delicious</li>
+                                        <li class="tag">creative</li>
+                                        <li class="tag">savory</li>
+                                        <li class="tag">edible</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link"
+                            aria-label="Open item: Deconstructed Pizza Pattern">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Deconstructed Pizza Pattern" src="./img/03.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Deconstructed Pizza Pattern</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">food</li>
+                                        <li class="tag">pizza</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">abstract</li>
+                                        <li class="tag">creative</li>
+                                        <li class="tag">pattern</li>
+                                        <li class="tag">savory</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link" aria-label="Open item: Zen in the Digital Snow">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Zen in the Digital Snow" src="./img/04.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Zen in the Digital Snow</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">spiritual</li>
+                                        <li class="tag">zen</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">serene</li>
+                                        <li class="tag">winter</li>
+                                        <li class="tag">monochromatic</li>
+                                        <li class="tag">meditative</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link" aria-label="Open item: Sunflowers in the Matrix">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Sunflowers in the Matrix" src="./img/05.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Sunflowers in the Matrix</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">minimalist</li>
+                                        <li class="tag">floral</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">modern</li>
+                                        <li class="tag">high-contrast</li>
+                                        <li class="tag">nature</li>
+                                        <li class="tag">elegant</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link"
+                            aria-label="Open item: Life Before the Digital Wall">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Life Before the Digital Wall" src="./img/06.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Life Before the Digital Wall</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">technology</li>
+                                        <li class="tag">lifestyle</li>
+                                        <li class="tag">surreal</li>
+                                        <li class="tag">minimalist</li>
+                                        <li class="tag">architecture</li>
+                                        <li class="tag">modern</li>
+                                        <li class="tag">human-element</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link"
+                            aria-label="Open item: A Window in the Summer Sky">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="A Window in the Summer Sky" src="./img/07.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">A Window in the Summer Sky</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">nature</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">summer</li>
+                                        <li class="tag">floral</li>
+                                        <li class="tag">sky</li>
+                                        <li class="tag">optimistic</li>
+                                        <li class="tag">dreamlike</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link"
+                            aria-label="Open item: Ethereal Floral Data Bloom">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Ethereal Floral Data Bloom" src="./img/08.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Ethereal Floral Data Bloom</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">floral</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">ethereal</li>
+                                        <li class="tag">light</li>
+                                        <li class="tag">dreamlike</li>
+                                        <li class="tag">nature</li>
+                                        <li class="tag">romantic</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link" aria-label="Open item: Fractured Diamond Matrix">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Fractured Diamond Matrix" src="./img/09.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Fractured Diamond Matrix</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">abstract</li>
+                                        <li class="tag">luxury</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">geometric</li>
+                                        <li class="tag">high-contrast</li>
+                                        <li class="tag">modern</li>
+                                        <li class="tag">elegant</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link" aria-label="Open item: The Assemblage Matrix">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="The Assemblage Matrix" src="./img/10.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">The Assemblage Matrix</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">abstract</li>
+                                        <li class="tag">minimalist</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">monochrome</li>
+                                        <li class="tag">pattern</li>
+                                        <li class="tag">high-contrast</li>
+                                        <li class="tag">industrial</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link"
+                            aria-label="Open item: Sunset Over a Digital Wall">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Sunset Over a Digital Wall" src="./img/11.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Sunset Over a Digital Wall</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">nature</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">sunset</li>
+                                        <li class="tag">architecture</li>
+                                        <li class="tag">high-contrast</li>
+                                        <li class="tag">urban</li>
+                                        <li class="tag">serene</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                    <li class="sheet"><a href="#" class="sheet__link"
+                            aria-label="Open item: Bioluminescent Digital Identity">
+                            <figure class="sheet__figure">
+                                <div class="sheet-frame" data-sheet-aspect="2:3">
+                                    <div class="sheet-frame__content">
+                                        <img class="sheet__image" alt="Bioluminescent Digital Identity"
+                                            src="./img/12.png">
+                                    </div>
+                                </div>
+                                <figcaption class="sheet__caption">
+                                    <h2 class="sheet__title">Bioluminescent Digital Identity</h2>
+                                    <ul class="tag-list list-plain" aria-label="Tags">
+                                        <li class="tag">abstract</li>
+                                        <li class="tag">technology</li>
+                                        <li class="tag">identity</li>
+                                        <li class="tag">futuristic</li>
+                                        <li class="tag">glowing</li>
+                                        <li class="tag">organic</li>
+                                        <li class="tag">sci-fi</li>
+                                    </ul>
+                                </figcaption>
+                            </figure>
+                        </a></li>
+                </ul>
+            </div>
+            <hr class="the-separator">
+            <div class="content-column content-column--tight">
+                <p>Few test buttons to bind animations/behaviors:</p>
+                <section class="gen-form-section" aria-label="Generate New Item">
+                    <form class="gen-form" aria-label="New generation inputs" novalidate>
+                        <div class="form-actions" role="group" aria-label="Actions">
+                            <button type="button" class="btn btn-secondary" data-random-toast>Create a random toast</button>
+                            <button type="button" class="btn btn-secondary" data-progress-to="0">Animate progress to 0%</button>
+                            <button type="button" class="btn btn-secondary" data-progress-to="50">Animate progress to 50%</button>
+                            <button type="button" class="btn btn-secondary" data-progress-to="100">Animate progress to 100%</button>
+                            <button type="button" class="btn btn-secondary" data-dialog-open="nav-dialog">Show menu</button>
+                            <button type="button" class="btn btn-secondary" data-dialog-open="info-dialog">Show modal</button>
+                            <button type="button" class="btn btn-secondary" data-mode="blueprint">Enable blueprint mode</button>
+                            <button type="button" class="btn btn-secondary" data-mode="art">Enable art mode</button>
+                        </div>
+                    </form>
+                </section>
+                <p>Just an example of split buttons:</p>
+                <section class="gen-form-section" aria-label="Generate New Item">
+                    <form class="gen-form" aria-label="New generation inputs" novalidate>
+                        <div class="form-actions" role="group" aria-label="Actions">
+                            <button type="button" class="btn btn--utility">Create new based on
+                                this</button>
+                            <div class="btn-split" role="group" aria-label="Download image">
+                                <button type="button" class="btn btn--split-left" data-download="jpg"
+                                    aria-label="Download JPG">⤹ JPG</button>
+                                <button type="button" class="btn btn--split-right" data-download="png"
+                                    aria-label="Download PNG">PNG ⤸</button>
+                            </div>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+            <hr class="the-separator">
+            <div class="content-column content-column--tight">
+                <div class="gen-form-section">
+                    <form class="gen-form" aria-label="New generation setup" novalidate>
+                        <div class="form-actions" role="group" aria-label="Actions">
+                            <button type="button" class="btn btn-secondary">Pick different style</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="content-column content-column--relaxed">
+                <div class="generation__caption">
+                    <h2 class="generation__title">Sunflower Cloud on Beach</h2>
+                    <ul class="tag-list list-plain" aria-label="Tags">
+                        <li class="tag">nature</li>
+                        <li class="tag">technology</li>
+                        <li class="tag">surreal</li>
+                        <li class="tag">beach</li>
+                        <li class="tag">summer</li>
+                        <li class="tag">floral</li>
+                        <li class="tag">whimsical</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="content-column content-column--tight">
+                <div class="toggle-mockup">
+                    <label class="toggle" aria-label="Toggle blueprint/art">
+                        <input class="toggle__input" type="checkbox">
+                        <span class="toggle__track" aria-hidden="true">
+                            <span class="toggle__thumb"></span>
+                        </span>
+                    </label>
+                </div>
+                <div class="sheet-scene-mockup">
+                    <div class="sheet-frame sheet-frame--main" data-sheet-aspect="2:3">
+                        <div class="sheet-frame__content"></div>
+                    </div>
+                </div>
+                <section class="gen-form-section" aria-label="Generate New Item">
+                    <form class="gen-form" aria-label="New generation inputs" novalidate>
+                        <div class="form-cluster">
+                            <div class="field length-field" data-soft-limit="120" data-hard-limit="160">
+                                <label for="f-qr-content">QR Content</label>
+                                <input id="f-qr-content" name="qrContent" type="text"
+                                    placeholder="https://example.com/your-content" autocomplete="off"
+                                    aria-describedby="qr-length-hint" value="https://example.com/gallery/sample-item">
+                                <div id="qr-length-hint" class="length-hint" role="status" aria-live="polite" hidden>
+                                    <div class="length-hint__inner">
+                                        <div class="length-hint__title">Tighten It Up</div>
+                                        <p class="length-hint__summary"><span class="length-hint__count"
+                                                data-part="count">0</span> chars — aim for under <span
+                                                data-part="soft"></span> (hard stop <span data-part="hard"></span>).</p>
+                                        <ul class="length-hint__tips">
+                                            <li>Remove filler words + trailing slashes.</li>
+                                            <li>Prefer canonical root over deep query params.</li>
+                                            <li>Use short UTM codes only if required.</li>
+                                            <li>Compress meaning: replace phrases with keywords.</li>
+                                        </ul>
+                                        <p class="length-hint__why">Shorter = denser QR modules → faster scanning,
+                                            cleaner visual balance.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field"><label for="f-aspect">Aspect</label><select id="f-aspect" name="aspect">
+                                    <option value="aspect-1-1">1:1</option>
+                                    <option value="aspect-4-5">4:5</option>
+                                    <option value="aspect-2-3" selected>2:3</option>
+                                </select></div>
+                            <div class="field"><label for="f-top-heading">Top heading</label><input id="f-top-heading"
+                                    name="topHeading" type="text" placeholder="Summer Sale" value="Summer Sale"></div>
+                            <div class="field"><label for="f-top-subtitle">Top subtitle</label><input
+                                    id="f-top-subtitle" name="topSubtitle" type="text" placeholder="Limited time"
+                                    value="Limited time"></div>
+                            <div class="field"><label for="f-bottom-heading">Bottom heading</label><input
+                                    id="f-bottom-heading" name="bottomHeading" type="text" placeholder="Scan & Save"
+                                    value="Scan & Save"></div>
+                            <div class="field"><label for="f-bottom-subtitle">Bottom subtitle</label><input
+                                    id="f-bottom-subtitle" name="bottomSubtitle" type="text" placeholder="Offer inside"
+                                    value="Offer inside"></div>
+                        </div>
+                        <div class="form-actions" role="group" aria-label="Actions">
+                            <button type="submit" class="btn btn--ultra">Generate</button>
+                        </div>
+                    </form>
+                </section>
+                <!-- Generation Note: calm, structured info block under actions -->
+                <section class="generation-note generation-note--safe" aria-labelledby="gen-note-title">
+                    <div class="generation-note__inner">
+                        <header class="generation-note__header">
+                            <h3 id="gen-note-title" class="generation-note__title">A note on this generation</h3>
+                            <p class="generation-note__subtitle">Calm details that help set expectations — designed to
+                                be read or ignored without distraction.</p>
+                        </header>
+                        <ul class="generation-note__facts list-plain">
+                            <li class="fact fact--safe">
+                                <span class="fact__icon" aria-hidden="true">
+                                    <!-- Ink drop icon -->
+                                    <svg viewBox="0 0 24 24" class="icon">
+                                        <path fill="currentColor"
+                                            d="M12 2c.3 0 .6.12.8.36 2.54 2.86 6.2 7.47 6.2 10.64 0 3.94-3.13 7.14-7 7.14s-7-3.2-7-7.14C5 9.83 8.66 5.22 11.2 2.36A1.1 1.1 0 0 1 12 2Z" />
+                                    </svg>
+                                </span>
+                                <div class="fact__body">
+                                    <div class="fact__label">Ink use</div>
+                                    <div class="fact__value">≈ 1–2 units</div>
+                                    <div class="fact__meta">Varies with style, aspect, and density.</div>
+                                </div>
+                            </li>
+                            <li class="fact fact--safe">
+                                <span class="fact__icon" aria-hidden="true">
+                                    <!-- Clock icon -->
+                                    <svg viewBox="0 0 24 24" class="icon">
+                                        <path fill="currentColor"
+                                            d="M12 2a10 10 0 1 1 0 20A10 10 0 0 1 12 2Zm1 5v4.59l3.12 3.13a1 1 0 0 1-1.41 1.41l-3.4-3.39A1.99 1.99 0 0 1 10 12V7a1 1 0 1 1 2 0Z" />
+                                    </svg>
+                                </span>
+                                <div class="fact__body">
+                                    <div class="fact__label">Typical ETA</div>
+                                    <div class="fact__value">~ 60–70 seconds</div>
+                                    <div class="fact__meta">Most jobs finish well under 90s.</div>
+                                </div>
+                            </li>
+                            <li class="fact fact--safe">
+                                <span class="fact__icon" aria-hidden="true">
+                                    <!-- QR icon -->
+                                    <svg viewBox="0 0 24 24" class="icon">
+                                        <path fill="currentColor"
+                                            d="M3 3h8v8H3V3Zm2 2v4h4V5H5Zm6 0h2v2h-2V5Zm0 4h2v2h-2V9ZM3 13h2v2H3v-2Zm4 0h4v4H7v-4Zm2 2v0h0v0h0Zm6-2h2v2h-2v-2Zm0 4h2v2h-2v-2Zm4-6h2v2h-2V9Zm0 4h2v6h-6v-2h4v-4Z" />
+                                    </svg>
+                                </span>
+                                <div class="fact__body">
+                                    <div class="fact__label">Scan quality</div>
+                                    <div class="fact__value">Optimized to be readable</div>
+                                    <div class="fact__meta">If a result is unscannable, we’ll make it right.</div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="generation-note__fine">
+                            <p>If your QR doesn’t scan reliably, reply to your receipt or email <a
+                                    href="mailto:support@example.com?subject=Refund%20request%3A%20unscannable%20QR">support@example.com</a>
+                                within 7&nbsp;days and we’ll refund the ink. Including the generated image and the
+                                encoded content helps us fix it faster.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Flying Footer -->
+        <div class="fly fly--bottom">
+            <div class="fly__extra">
+                <div id="portal-root" class="fly-messages" aria-live="polite" aria-atomic="false" role="region"
+                    aria-label="App messages"></div>
+            </div>
+            <div class="fly__measured">
+                <footer class="app-footer">
+                    <nav class="ui-bar ui-bar--progress app-footer__inner" aria-label="Generation progress" hidden>
+                        <div class="ui-bar__icon" aria-hidden="true"><img src="./img/icons/filter.svg" class="ui-icon"
+                                alt="Progress"></div>
+                        <div class="ui-bar__main" role="progressbar" aria-label="Progress" aria-valuemin="0"
+                            aria-valuemax="100" aria-valuenow="0">
+                            <div class="ui-progress__fill"></div>
+                            <div class="ui-progress__label" aria-hidden="true">Preparing…</div>
+                        </div>
+                        <div class="ui-bar__side"><span class="ink"><span class="progress-percent">0%</span></span>
+                        </div>
+                    </nav>
+                    <nav class="ui-bar ui-bar--filter app-footer__inner" aria-label="Filter controls">
+                        <div class="ui-bar__icon"><img src="./img/icons/filter.svg" class="ui-icon" alt="Filters"></div>
+                        <div class="ui-bar__main">
+                            <div class="filters__chips" role="group" aria-label="Tags">
+                                <button type="button" class="chip is-active" aria-pressed="true">All</button>
+                                <button type="button" class="chip" aria-pressed="false">abstract</button>
+                                <button type="button" class="chip" aria-pressed="false">floral</button>
+                                <button type="button" class="chip" aria-pressed="false">technology</button>
+                                <button type="button" class="chip" aria-pressed="false">nature</button>
+                                <button type="button" class="chip" aria-pressed="false">minimalist</button>
+                                <button type="button" class="chip" aria-pressed="false">surreal</button>
+                                <button type="button" class="chip" aria-pressed="false">summer</button>
+                            </div>
+                        </div>
+                        <div class="ui-bar__side">
+                            <select id="aspect-select" class="aspect-select" aria-label="Aspect ratio">
+                                <option value="any">Any</option>
+                                <option value="1:1">1:1</option>
+                                <option value="4:5">4:5</option>
+                                <option value="2:3" selected>2:3</option>
+                            </select>
+                        </div>
+                    </nav>
+                </footer>
+            </div>
+        </div>
+    </div>
+    <script defer src="./app.js"></script>
+</body>
+
+</html>
