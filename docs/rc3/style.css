@@ -60,6 +60,8 @@
 /* === TOKENS & SYSTEM (verbatim from original) === */
 @layer tokens {
     :root {
+        /* Render built-in form controls in light mode to avoid iOS/Safari auto-inverting text */
+        color-scheme: light;
         /* Master color palette (root theme colors, not used directly in components, but to create semantic/app-specific tokens) */
         /* -- Starting point */
         --master--color-bg: #ffffff;
@@ -318,6 +320,8 @@ html.is-scroll-locked .fly {
     border: none;
     padding: 8px;
     border-radius: var(--radius-control);
+    /* Ensure glyphs render with the intended color on mobile */
+    -webkit-text-fill-color: currentColor;
 }
 
 .icon-button:focus-visible {
@@ -770,6 +774,9 @@ html.is-scroll-locked .fly {
     border: 1px solid var(--color-border);
     background: var(--color-translucent-surface-boring);
     font-size: var(--font-body-sm);
+    /* Explicitly set text color to avoid iOS dark-mode white text */
+    color: var(--color-text);
+    -webkit-text-fill-color: var(--color-text);
 }
 
 .aspect-select:focus {
@@ -800,6 +807,9 @@ html.is-scroll-locked .fly {
     background: var(--color-opaque-surface-spot);
     /* Ensure hamburger glyph uses a symbol font when needed */
     font-family: var(--font-symbols), inherit;
+    /* Force visible glyph color on mobile */
+    color: var(--color-text);
+    -webkit-text-fill-color: currentColor;
 }
 
 .menu-button:hover {
@@ -1256,6 +1266,9 @@ html.is-scroll-locked .fly {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Ensure × glyph remains dark on mobile */
+    color: var(--color-text);
+    -webkit-text-fill-color: currentColor;
 }
 
 .dialog-close:hover {
@@ -1297,6 +1310,9 @@ html.is-scroll-locked .fly {
     display: flex;
     align-items: center;
     justify-content: center;
+    /* Ensure × glyph remains dark on mobile */
+    color: var(--color-text);
+    -webkit-text-fill-color: currentColor;
 }
 
 .main-nav__close:hover {
@@ -1317,6 +1333,8 @@ html.is-scroll-locked .fly {
     display: grid;
     position: relative;
     gap: 12px;
+    /* Respect the computed color on iOS (including .btn--primary white) */
+    -webkit-text-fill-color: currentColor;
     padding: 24px;
 }
 
@@ -1593,7 +1611,7 @@ h2.generation__title {
 @layer mockup {
     /* Just a placeholder box to represent the actual component */
     .sheet-scene-mockup {
-        max-height: 60vh;
+        /* max-height: 60vh; */
         margin: 0 auto;
     }
 
