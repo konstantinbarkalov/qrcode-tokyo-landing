@@ -191,3 +191,6 @@ The current goal is lean, readable CSS that implements everything needed functio
 
 ## 20. Quick Start (Viewing Locally)
 Simply open `index.html` in a browser. No build step or dependencies.
+
+### Fonts
+This prototype loads Roboto and Roboto Serif from Google Fonts using a lightweight `<link>` with `preconnect` and `display=swap` for good CLS behavior. If you prefer self‑hosting, replace the `<link>` in `index.html` with local `@font-face` definitions and keep the same font stacks to preserve rendering.

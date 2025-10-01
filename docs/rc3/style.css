@@ -207,7 +207,8 @@ body {
     background-color: var(--color-bg-alt);
     background-image: radial-gradient(circle at 0 0, var(--color-translucent-surface-boring), var(--color-bg-alt));
     color: var(--color-text);
-    font-family: Roboto, sans-serif;
+    /* Use hosted Roboto with resilient system fallbacks */
+    font-family: "Roboto", ui-sans-serif, system-ui, -apple-system, "Segoe UI", "Noto Sans", Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
     position: relative;
 }
 
@@ -1404,7 +1405,8 @@ button.main-nav__entry {
 }
 
 h2.generation__title {
-    font-family: Roboto Serif, serif;
+    /* Hosted Roboto Serif with modern serif/system fallbacks */
+    font-family: "Roboto Serif", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
     font-style: italic;
     font-weight: 500;
     font-size: 44px;
